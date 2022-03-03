@@ -3,7 +3,7 @@
 	url = ./taco
 [submodule "Pigeon.jl"]
 	path = Pigeon.jl
-	url = ./Pigeon.jl/
+	url = https://github.com/peterahrens/Pigeon.jl.git
 [submodule "julia"]
 	path = julia
 	url = ./julia
