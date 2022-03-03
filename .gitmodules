@@ -1,0 +1,9 @@
+[submodule "taco"]
+	path = taco
+	url = ./taco
+[submodule "Pigeon.jl"]
+	path = Pigeon.jl
+	url = ./Pigeon.jl/
+[submodule "julia"]
+	path = julia
+	url = ./julia
