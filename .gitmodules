@@ -1,9 +1,11 @@
 [submodule "taco"]
 	path = taco
-	url = ./taco
+	url = https://github.com/peterahrens/taco.git
+	branch = pldi2022
 [submodule "Pigeon.jl"]
 	path = Pigeon.jl
 	url = https://github.com/peterahrens/Pigeon.jl.git
 [submodule "julia"]
 	path = julia
-	url = ./julia
+	url = https://github.com/JuliaLang/julia.git
+	branch = bf534986350a991e4a1b29126de0342ffd76205e
