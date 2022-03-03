@@ -1,27 +1,27 @@
-DIR = dirname "$0"
+#!/bin/bash
 
 # Build our special version of taco
 
-cd $DIR/taco
+cd taco
 mkdir build
 cd build
 cmake -DCMAKE_BUILD_TYPE=Release ..
-make -j4
-cd $DIR
+make -j8
+cd ../..
 
 # Build julia 1.7.2
 
-cd $DIR/julia
-make -j4
-cd $DIR
+export JULIA_DEPOT_PATH=./julia_depot
+cd julia
+make -j
+cd ..
 
 # Initialize environment variables
 
-export PATH = $DIR/julia:$PATH
-export JULIA_DEPOT_PATH = $DIR/julia_depot
-export JULIA_PROJECT = $DIR
-export LD_LIBRARY_PATH = /data/scratch/pahrens/taco/build/lib:$LD_LIBRARY_PATH
+export PATH=./julia:$PATH
+export JULIA_PROJECT=.
+export LD_LIBRARY_PATH=./taco/build/lib:$LD_LIBRARY_PATH
 
 # Install Julia dependencies
 
-julia -e "using Pkg; Pkg.resolve()"
+julia -e "using Pkg; Pkg.update(); Pkg.resolve()"
