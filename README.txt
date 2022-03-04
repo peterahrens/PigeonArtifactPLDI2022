@@ -94,14 +94,15 @@ the results as they are presented in the paper.
 3. Run the `run.sh` script to autotune and benchmark all three kernels.
 4. Run the `analysis.sh` script to interpret the results and compare to figures 6
 and 7 in the paper.
-5. The results for figure 6 will be written to the file "figure6.txt", and plots
-for figure 7 will be written to the file "figure7.txt".  Additionally, figure 6
-and 7 will be output to the command line by the `analysis.jl` script.  You can
-compare the output of these scripts to the contents of the paper. Any counts of
-schedules should match exactly, but performance variations might be noticed.
-Even so, there should be an obvious large speedup of the autotuned kernels over
-the default one for spmv2 and spgemm, while performance for spmv should be
-roughly the same. If you would like to run the analysis script again to see its
-output, try
+5. A table for figure 6 will be written to the file "figure6.txt", and tables
+for figure 7 will be written to the file "figure7.txt".  Additionally, the table
+for figure 6 and unicode plots for figure7 will be output to the command line by
+the `analysis.jl` script.  You can compare the output of these scripts to the
+contents of the paper. Any counts of schedules should match exactly, but
+performance variations might be noticed.  Even so, there should be an obvious
+trend showing a big speedup of the autotuned kernels over the default ones for
+spmv2 and spgemm, since the default for these kernels is asymptotically bad. The
+performance for spmv should be roughly the same. If you would like to run the
+analysis script again to see its output, try
 
 `docker run -t pigeon sh analysis.sh`

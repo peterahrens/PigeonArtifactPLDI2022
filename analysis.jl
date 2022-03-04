@@ -44,17 +44,14 @@ function main(args)
             data = JSON.parse(f)
         end
         name = basename(first(splitext(arg)))
-        println("$name:\n")
-        println(figure7, "$name:\n")
 
+        println("$name:\n")
         p = lineplot(log10.(data["n_series"]), log10.(data["default_n_series"]), color=:blue, title="Runtime vs. Dimension (p=0.01)", xlabel="Log10 Dimension n", ylabel="Log10 Runtime (Seconds)")
         p = scatterplot!(p, log10.(data["n_series"]), log10.(data["default_n_series"]), name="Default Schedule (+)", color=:blue, marker=:+)
         p = lineplot!(p, log10.(data["n_series"]), log10.(data["auto_n_series"]), color=:red)
         p = scatterplot!(p, log10.(data["n_series"]), log10.(data["auto_n_series"]), name="Tuned Schedule (O)", color=:red, marker=:O)
         println(p)
         println()
-        show(figure7, p)
-        println(figure7, "\n")
 
         p = lineplot(log10.(data["p_series"]), log10.(data["default_p_series"]), color=:blue, title="Runtime vs. Density (n=$(data["N"]))", xlabel="Log10 Density p", ylabel="Log10 Runtime (Seconds)")
         p = scatterplot!(p, log10.(data["p_series"]), log10.(data["default_p_series"]), name="Default Schedule (+)", color=:blue, marker=:+)
@@ -62,7 +59,20 @@ function main(args)
         p = scatterplot!(p, log10.(data["p_series"]), log10.(data["auto_p_series"]), name="Tuned Schedule (O)", color=:red, marker=:O)
         println(p)
         println()
-        show(figure7, p)
+
+        println(figure7, "$name:\n")
+        pretty_table(figure7,
+            [[["Default Runtime (seconds)"] data["default_n_series"]'];
+                [["Tuned Runtime (seconds)"] data["auto_n_series"]'];
+                [["Speedup"] (data["default_n_series"]./data["auto_n_series"])']],
+            header = [["Dimension (p = 0.01)"]; data["n_series"]])
+        println(figure7, "\n")
+
+        pretty_table(figure7,
+            [[["Default Runtime (seconds)"] data["default_p_series"]'];
+                [["Tuned Runtime (seconds)"] data["auto_p_series"]'];
+                [["Speedup"] (data["default_p_series"]./data["auto_p_series"])']],
+            header = [["Density (n = $(data["N"]))"]; data["p_series"]])
         println(figure7, "\n")
     end
     close(figure7)
