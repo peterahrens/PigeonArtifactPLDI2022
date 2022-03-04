@@ -138,34 +138,27 @@ function paper(prgm, args, dims, fname)
     for n = n_series
         @info "n_series" n n_series[end]
         input = Pigeon.generate_uniform_taco_inputs(args, n, 0.01)
-        push!(default_n_series, run_taco(default_kernel, input))
-        push!(auto_n_series, run_taco(auto_kernel, input))
+        default_n_point = run_taco(default_kernel, input)
+        auto_n_point = run_taco(auto_kernel, input)
+        push!(default_n_series, default_n_point)
+        push!(auto_n_series, auto_n_point)
     end
 
     data["n_series"] = n_series
     data["default_n_series"] = default_n_series
     data["auto_n_series"] = auto_n_series
 
-    p_series = 0.5 .^ (6:12)
+    p_series = 0.5 .^ (6:11)
     default_p_series = []
     auto_p_series = []
     for p = p_series
         @info "p_series" p p_series[end]
         attempts = 0
-        while true
-            try
-                input = Pigeon.generate_uniform_taco_inputs(args, N, p)
-                default_p_point = run_taco(default_kernel, input)
-                auto_p_point = run_taco(auto_kernel, input)
-                push!(default_p_series, default_p_point)
-                push!(auto_p_series, auto_p_point)
-            catch
-                attempts += 1
-                if attempts > 10
-                    rethrow()
-                end
-            end
-        end
+        input = Pigeon.generate_uniform_taco_inputs(args, N, p)
+        default_p_point = run_taco(default_kernel, input)
+        auto_p_point = run_taco(auto_kernel, input)
+        push!(default_p_series, default_p_point)
+        push!(auto_p_series, auto_p_point)
     end
 
     data["p_series"] = p_series
