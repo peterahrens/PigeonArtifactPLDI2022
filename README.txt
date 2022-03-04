@@ -109,13 +109,13 @@ quite homogeneous, so we expect that if our plots show an obvious big speedup of
 the autotuned kernels over the default ones, that should be reflected in the
 evaluator's results.
 
-6. Begin inspecting the built container with a `docker run --name session --rm
+6. [Optional] Begin inspecting the built container with a `docker run --name session --rm
 -t -i pigeon bash`.  If you would like to run the analysis script again to
 see its output, try
 
 julia --project=. analysis.jl *.json
 
-We have included our results in the `reference_results` directory, should you
+7. [Optional] We have included our results in the `reference_results` directory, should you
 wish to compare directly.  To compare against them, try
 
 cd reference_results
