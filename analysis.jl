@@ -37,6 +37,7 @@ function main(args)
     close(figure6)
 
     println("figure 7")
+    figure7 = open("figure7.txt", "w")
     for arg in args
         data = Dict()
         open(arg, "r") do f
@@ -44,6 +45,7 @@ function main(args)
         end
         name = basename(first(splitext(arg)))
         println("$name:\n")
+        println(figure7, "$name:\n")
 
         p = lineplot(log10.(data["n_series"]), log10.(data["default_n_series"]), color=:blue, title="Runtime vs. Dimension (p=0.01)", xlabel="Log10 Dimension n", ylabel="Log10 Runtime (Seconds)")
         p = scatterplot!(p, log10.(data["n_series"]), log10.(data["default_n_series"]), name="Default Schedule (+)", color=:blue, marker=:+)
@@ -51,6 +53,8 @@ function main(args)
         p = scatterplot!(p, log10.(data["n_series"]), log10.(data["auto_n_series"]), name="Tuned Schedule (O)", color=:red, marker=:O)
         println(p)
         println()
+        show(figure7, p)
+        println(figure7, "\n")
 
         p = lineplot(log10.(data["p_series"]), log10.(data["default_p_series"]), color=:blue, title="Runtime vs. Density (n=$(data["N"]))", xlabel="Log10 Density p", ylabel="Log10 Runtime (Seconds)")
         p = scatterplot!(p, log10.(data["p_series"]), log10.(data["default_p_series"]), name="Default Schedule (+)", color=:blue, marker=:+)
@@ -58,17 +62,10 @@ function main(args)
         p = scatterplot!(p, log10.(data["p_series"]), log10.(data["auto_p_series"]), name="Tuned Schedule (O)", color=:red, marker=:O)
         println(p)
         println()
-
-        p = plot(title="Runtime vs. Dimension (p=0.01)", xlabel="Dimension n", ylabel="Runtime (Seconds)", xscale=:log10, yscale=:log10, legend=:topleft, titlefontsize=9, thickness_scaling=1.7)
-        p = plot!(p, data["n_series"], data["default_n_series"], label="Default Schedule", markershape=:circle)
-        p = plot!(p, data["n_series"], data["auto_n_series"], label="Tuned Schedule", markershape=:circle)
-        Plots.savefig(p, "$(name)_figure7_dimension.png")
-
-        p = plot(title="Runtime vs. Density (n=$(data["N"]))", xlabel="Density p", ylabel="Runtime (Seconds)", xscale=:log10, yscale=:log10, legend=:topleft, titlefontsize=9, thickness_scaling=1.7, xflip=false)
-        p = plot!(p, data["p_series"], data["default_p_series"], label="Default Schedule", markershape=:circle)
-        p = plot!(p, data["p_series"], data["auto_p_series"], label="Tuned Schedule", markershape=:circle)
-        Plots.savefig(p, "$(name)_figure7_density.png")
+        show(figure7, p)
+        println(figure7, "\n")
     end
+    close(figure7)
 end
 
 main(ARGS)
