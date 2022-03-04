@@ -93,8 +93,16 @@ the results as they are presented in the paper.
 3. Run the `run.sh` script to autotune and benchmark all three kernels.
 4. Run the `analysis.sh` script to interpret the results and compare to figures 6
 and 7 in the paper.
-5. The results will be written to two files, "figure6.txt" and "figure7.txt".
-You can compare the contents of these files to the contents of the paper. We
-noticed some sporadic taco bugs cropping at low densities on some systems, so
-the plots for varying density are focused on the higher densities, where most of
-the interesting behaviour is anyway.
+5. The results for figure 6 will be written to the file "figure6.txt", and plots
+for figure 7 will be written to appropriately named figure 7 files.
+Additionally, figure 6 and 7 will be output in unicode format by the
+`analysis.jl` script.  You can compare the contents of these files to the
+contents of the paper. Any counts of schedules should match exactly, but
+performance variations might be noticed. In any event, there should be an
+obvious large speedup of the autotuned kernels over the default one for spmv2
+and spgemm, while performance for spmv should be roughly the same.
+
+We noticed
+some sporadic taco segfaults cropping at low densities on some systems, so the plots
+for varying density are focused on the higher densities, where most of the
+interesting behaviour is anyway. 
