@@ -6,7 +6,7 @@ Welcome Artifact Evaluator!
 
 1. For your convenience, we have included a Dockerfile to build the required
 project dependencies. If it's possible for you to execute `docker build -t
-pigeon Dockerfile` from the project directory, skip to step 3.
+pigeon Dockerfile` from the project directory, skip to step 5.
 
 2. If you'd rather not use the Dockerfile, there are three main dependencies to
 the project that you must build. Each dependency is included in it's own
@@ -87,7 +87,14 @@ range to reduce the probability of taco segfaults at extremely low tensor densit
 default_p_series: The runtime of the default kernel on these inputs.
 default_p_series: The runtime of the autotuned kernel on these inputs.
 
-The `analyze.jl` script will gather all `*.json` files passed to it and visualize
+The `analysis.jl` script will gather all `*.json` files passed to it and visualize
 the results as they are presented in the paper.
 
-3. 
+3. Run the `run.sh` script to autotune and benchmark all three kernels.
+4. Run the `analysis.sh` script to interpret the results and compare to figures 6
+and 7 in the paper.
+5. The results will be written to two files, "figure6.txt" and "figure7.txt".
+You can compare the contents of these files to the contents of the paper. We
+noticed some sporadic taco bugs cropping at low densities on some systems, so
+the plots for varying density are focused on the higher densities, where most of
+the interesting behaviour is anyway.

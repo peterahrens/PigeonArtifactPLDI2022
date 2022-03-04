@@ -3,9 +3,11 @@ BSON = "fbb218c0-5317-5bc6-957e-2ee96dd4b1f0"
 BenchmarkTools = "6e4b80f9-dd63-53aa-95a3-0cdb28fa8baf"
 JSON = "682c06a0-de6a-54ab-a142-c8b1cf79cde6"
 Pigeon = "5feeeddc-254b-4aab-a0bc-ed990ddc1d92"
+PrettyTables = "08abe8d2-0d0c-5749-adfa-8a2ac140af0d"
 Random = "9a3f8284-a2c9-5f02-9a11-845980a1fd5c"
 RewriteTools = "5969e224-3634-4c61-9f66-721b69e98b8a"
 Statistics = "10745b16-79ce-11e8-11f9-7d13ad32a3b2"
+UnicodePlots = "b8865327-cd53-5732-bb35-84acbb429228"
 
 [compat]
 BSON = "~0.3.5"
