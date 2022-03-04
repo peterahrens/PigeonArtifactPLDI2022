@@ -42,15 +42,26 @@ function main(args)
         end
         name = basename(first(splitext(arg)))
 
+        function relim((x, y))
+            c = (x + y)/2
+            dx, dy = (x, y) .- c
+            return (dx, dy) .* 1.2 .+ c
+        end
+            
+
         println("$name:\n")
-        p = lineplot(log10.(data["n_series"]), log10.(data["default_n_series"]), color=:blue, title="Runtime vs. Dimension (p=0.01)", xlabel="Log10 Dimension n", ylabel="Log10 Runtime (Seconds)")
+        xlim = relim(log10.(extrema(data["n_series"])))
+        ylim = relim(log10.(extrema(vcat(data["default_n_series"], data["auto_n_series"]))))
+        p = lineplot(log10.(data["n_series"]), log10.(data["default_n_series"]), color=:blue, title="Runtime vs. Dimension (p=0.01)", xlabel="Log10 Dimension n", ylabel="Log10 Runtime (Seconds)", xlim=xlim, ylim=ylim)
         p = scatterplot!(p, log10.(data["n_series"]), log10.(data["default_n_series"]), name="Default Schedule (+)", color=:blue, marker=:+)
         p = lineplot!(p, log10.(data["n_series"]), log10.(data["auto_n_series"]), color=:red)
         p = scatterplot!(p, log10.(data["n_series"]), log10.(data["auto_n_series"]), name="Tuned Schedule (O)", color=:red, marker=:O)
         println(p)
         println()
 
-        p = lineplot(log10.(data["p_series"]), log10.(data["default_p_series"]), color=:blue, title="Runtime vs. Density (n=$(data["N"]))", xlabel="Log10 Density p", ylabel="Log10 Runtime (Seconds)")
+        xlim = relim(log10.(extrema(data["p_series"])))
+        ylim = relim(log10.(extrema(vcat(data["default_p_series"], data["auto_p_series"]))))
+        p = lineplot(log10.(data["p_series"]), log10.(data["default_p_series"]), color=:blue, title="Runtime vs. Density (n=$(data["N"]))", xlabel="Log10 Density p", ylabel="Log10 Runtime (Seconds)", xlim=xlim, ylim=ylim)
         p = scatterplot!(p, log10.(data["p_series"]), log10.(data["default_p_series"]), name="Default Schedule (+)", color=:blue, marker=:+)
         p = lineplot!(p, log10.(data["p_series"]), log10.(data["auto_p_series"]), color=:red)
         p = scatterplot!(p, log10.(data["p_series"]), log10.(data["auto_p_series"]), name="Tuned Schedule (O)", color=:red, marker=:O)
