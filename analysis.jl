@@ -1,7 +1,4 @@
-#using Plots
 using UnicodePlots
-using Plots
-gr()
 using BSON
 using JSON
 using Statistics
@@ -36,7 +33,7 @@ function main(args)
     pretty_table(figure6, table, header=header)
     close(figure6)
 
-    println("figure 7")
+    println("figure 7:")
     figure7 = open("figure7.txt", "w")
     for arg in args
         data = Dict()
