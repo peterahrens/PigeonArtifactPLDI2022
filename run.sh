@@ -5,7 +5,7 @@ export PATH=./julia:$PATH
 export JULIA_PROJECT=.
 export LD_LIBRARY_PATH=./taco/build/lib:$LD_LIBRARY_PATH
 
-julia spmv.jl
+#julia spmv.jl
 julia spgemm.jl
 julia spmv2.jl
 #julia spgemm2.jl

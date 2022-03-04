@@ -27,8 +27,8 @@ directory in the artifact, and we expect them to be built locally.
     - `Pigeon.jl` is the julia project which contains our autotuner
     implementation.  You can download project dependencies by running `sh
     build_project.sh` from the toplevel directory.  For those familiar with
-    Julia, the project dependencies for all the scripts are contained in the
-    `Project.toml` and `Manifest.toml` files in the toplevel directory,
+    Julia, the project dependencies for all the julia scripts are contained in
+    the `Project.toml` and `Manifest.toml` files in the toplevel directory,
     including a dependency on the locally developed package `Pigeon.jl`. Set
     `JULIA_PROJECT` to the location of the toplevel directory. If you'd like,
     set `JULIA_DEPOT_PATH` to a good place to put julia project dependencies.
@@ -114,10 +114,10 @@ evaluator's results.
 see its output, try
 
 julia --project=. analysis.jl *.json
-julia analysis.jl *.json
 
+We have included our results in the `reference_results` directory, should you
+wish to compare directly.  To compare against them, try
 
-We have included our raw results in the `ref` directory, should you wish to
-compare directly.  To run them, we recommend a sequence of commands like
-
-docker run -i -t pigeon bin/bash
+cd reference_results
+julia --project=.. ../analysis.jl *.json
+cd ..
