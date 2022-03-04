@@ -1,3 +1,6 @@
 .vscode
 *.bson
 *.json
+Pigeon.jl
+taco
+julia
