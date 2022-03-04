@@ -83,7 +83,8 @@ default_n_series: The runtime of the default kernel on these inputs.
 default_n_series: The runtime of the autotuned kernel on these inputs.
 
 p_series: A series of densities for tensors of size N. We have truncated this
-range to reduce the probability of taco segfaults at extremely low tensor density.
+range to reduce the probability of taco segfaults at extremely low tensor
+density on some systems.
 default_p_series: The runtime of the default kernel on these inputs.
 default_p_series: The runtime of the autotuned kernel on these inputs.
 
@@ -100,9 +101,7 @@ Additionally, figure 6 and 7 will be output in unicode format by the
 contents of the paper. Any counts of schedules should match exactly, but
 performance variations might be noticed. In any event, there should be an
 obvious large speedup of the autotuned kernels over the default one for spmv2
-and spgemm, while performance for spmv should be roughly the same.
+and spgemm, while performance for spmv should be roughly the same. If you would
+like to run the analysis script again to see its output, try
 
-We noticed
-some sporadic taco segfaults cropping at low densities on some systems, so the plots
-for varying density are focused on the higher densities, where most of the
-interesting behaviour is anyway. 
+`docker run -t pigeon sh analysis.sh`
