@@ -147,3 +147,9 @@ range to reduce the probability of taco segfaults at extremely low tensor
 density on some systems.
 default_p_series: The runtime of the default kernel on these inputs.
 default_p_series: The runtime of the autotuned kernel on these inputs.
+
+8. [optional] If you'd like to take a look at the code which generates these
+results, you can start with the scripts themselves (e.g. spmv.jl) which set up
+the kernels to be benchmarked, and the file `paper.jl`. The file `paper.jl` does
+most of the test harnessing, and makes several calls to functions in our 
+autotuning infrastructure, `Pigeon.jl`.
