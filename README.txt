@@ -1,5 +1,15 @@
 Welcome Artifact Evaluator!
 
+#--------#
+| Claims |
+#--------#
+
+We claim the results for spmv2 and spgemm in figures 6 and 7 are replicable
+(under reasonable expectations of performance variation).
+
+Due to time constraints, we have chosen not to ask artifact evaluators to
+reproduce results for the kernels spmv, spgemm2, spgemmh, or spmttkrp.
+
 #-----------------------#
 | Getting Started Guide |
 #-----------------------#
@@ -49,12 +59,12 @@ a subset of our test kernels.
 4. Run the `analysis.sh` script to interpret the results and compare to Figures 6
 and 7 in the paper.
 
-5. Our paper contains experiments with 6 test kernels, named spmv, spmv2, spgemm,
-spgemm2, spgemmh, and spmttkrp. They are described in Figure 6. Spmv is a
-trivial case, and the results for spgemm2, spgemmh, and spmttkrp each take a
-very long time to collect (several hours).  Therefore, we only expect the
-artifact evaluation to consider the results for the two kernels spmv2 and
-spgemm. The other kernels are optional.  These two kernels are fairly
+5. Evaluate our claims. Our paper contains experiments with 6 test kernels,
+named spmv, spmv2, spgemm, spgemm2, spgemmh, and spmttkrp. They are described in
+Figure 6. Spmv is a trivial case, and the results for spgemm2, spgemmh, and
+spmttkrp each take a very long time to collect (several hours).  Therefore, we
+only expect the artifact evaluation to consider the results for the two kernels
+spmv2 and spgemm. The other kernels are optional.  These two kernels are fairly
 representative of the full space of scheduling decisions. Spmv2 requires an
 intermediate tensor to minimize loop depth, and spgemm requires a specific loop
 ordering for appropriate iteration space filtering.
