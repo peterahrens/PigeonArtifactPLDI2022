@@ -21,7 +21,8 @@ If it's at all possible for you to execute
 
     docker build -t pigeon .
 
-from the project directory, you can skip to step 5.
+from the project directory, you can skip to step 5. This command took about an
+hour to run on our machine.
 
 2. If you'd rather not use the Dockerfile, there are three main dependencies to
 the project that you must build. Each dependency is included in it's own
