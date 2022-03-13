@@ -1,4 +1,4 @@
-FROM julia:1.7.2-bullseye
+FROM docker.io/library/julia:1.7.2-bullseye
 
 RUN apt-get -y update 
 RUN apt-get -y install cmake 
